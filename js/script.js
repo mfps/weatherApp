@@ -12,6 +12,8 @@ class WeatherForecast {
     this.resultOptions = document.querySelectorAll(".options div");
     this.conditions = document.querySelector(".conditions");
     this.reset = document.querySelector(".forecast-button__reset");
+    this.results = document.querySelector(".results");
+    this.activities = document.querySelector(".activities");
     this.weatherServices = new WeatherServices();
     this.onInit();
   }
@@ -55,7 +57,6 @@ class WeatherForecast {
   }
 
   updateUISuccess(response = null) {
-    const into = this.conditions;
     if (response) {
       const degC = response.main.temp - 273.15;
       const degCInt = Math.floor(degC);
@@ -86,17 +87,20 @@ class WeatherForecast {
       const conditions = document.querySelector(".conditions div");
 
       if (conditions) {
-        into.replaceChild(container, conditions);
+        this.conditions.replaceChild(container, conditions);
       } else {
-        into.appendChild(container);
+        this.conditions.appendChild(container);
       }
 
       this.updateActivityList();
     } else {
-      while (into.firstChild) {
-        into.removeChild(into.firstChild);
+      while (this.activities.firstChild) {
+        this.activities.removeChild(this.activities.firstChild);
       }
-      document.querySelector(".results").classList.remove("open");
+      while (this.conditions.firstChild) {
+        this.conditions.removeChild(this.conditions.firstChild);
+      }
+      this.results.classList.remove("open");
     }
   }
 
@@ -138,7 +142,7 @@ class WeatherForecast {
       await this.updateState("OutWarm");
     }
 
-    const into = document.querySelector(".activities");
+    const into = this.activities;
     const activities = document.querySelector(".activities div");
     let activitiesContainer = document.createElement("div");
     let list = document.createElement("ul");
@@ -157,7 +161,7 @@ class WeatherForecast {
       into.appendChild(activitiesContainer);
     }
 
-    document.querySelector(".results").classList.add("open");
+    this.results.classList.add("open");
   }
 
   async updateState(type) {
