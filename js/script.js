@@ -110,27 +110,16 @@ class WeatherForecast {
   }
 
   async updateActivityList(event) {
-    if (event !== undefined && event.target.classList.contains("selected")) {
-      console.log(
-        event.target.parentNode.parentNode.querySelector(".activities")
-          .offsetHeight
-      );
+    const targetClassList = event.target.classList;
+    if (event !== undefined && targetClassList.contains("selected")) {
       return true;
-    } else if (
-      event !== undefined &&
-      !event.target.classList.contains("selected")
-    ) {
-      console.log(
-        event.target.parentNode.parentNode.querySelector(".activities")
-          .offsetHeight
-      );
+    } else if (event !== undefined && !targetClassList.contains("selected")) {
       this.category = event.target.id;
-
-      this.resultOptions.forEach(function(el) {
+      this.resultOptions.forEach(el => {
         el.classList.remove("selected");
       });
 
-      event.target.classList.add("selected");
+      targetClassList.add("selected");
     }
 
     this.state.activities = [];
@@ -147,7 +136,7 @@ class WeatherForecast {
     let activitiesContainer = document.createElement("div");
     let list = document.createElement("ul");
 
-    this.state.activities.forEach(function(activity, index) {
+    this.state.activities.forEach((activity, index) => {
       let listItem = document.createElement("li");
       listItem.setAttribute("key", index);
       listItem.textContent = activity;
@@ -170,12 +159,12 @@ class WeatherForecast {
       .then(activities => activities);
 
     if (this.category === "solo") {
-      this.state.activities.push(...activities["solo" + type]);
+      this.state.activities.push(...activities[`solo${type}`]);
     } else if (this.category === "team") {
-      this.state.activities.push(...activities["team" + type]);
+      this.state.activities.push(...activities[`team${type}`]);
     } else {
-      this.state.activities.push(...activities["solo" + type]);
-      this.state.activities.push(...activities["team" + type]);
+      this.state.activities.push(...activities[`solo${type}`]);
+      this.state.activities.push(...activities[`team${type}`]);
     }
   }
 
