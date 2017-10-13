@@ -1,0 +1,140 @@
+.forecast {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    height: 350px;
+    min-width: 250px;
+
+
+    @media screen and (min-width: 600px) {
+        margin-left: 1em;
+        width: 250px;
+    }
+
+    p {
+        text-align: center;
+        margin: 0.4em;
+    }
+
+    img {
+        display: inline-block;
+        width: 1.8em;
+        height: 1.8em;
+        vertical-align: bottom;
+    }
+
+    .prefs,
+    .results {
+        text-align: left;
+        background-color: rgba(255, 255, 255, 0.5);
+        width: 100%;
+    }
+
+    .prefs h3,
+    .results h3 {
+        background-color: black;
+        padding: 0.2em;
+        text-align: center;
+    }
+
+    .prefs {
+        border: 1px solid white;
+        text-align: center;
+
+        .hidden {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        form 
+        div {
+            display: inline-block;
+        }
+
+        .conditions .city {
+            font-weight: bold;
+        }
+    }
+    .results {
+        height: auto;
+        max-height: 0;
+        overflow-y: hidden;
+        transition: max-height 0.3s ease-out;
+
+        .options {
+            text-align: center;
+            border-bottom: 1px solid white;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .options div {
+            display: inline-block;
+            width: 33.33%;
+            padding: 0.25em 1em;
+            margin: 0;
+            border: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+
+        .options #team {
+            border-left: 1px solid white;
+            border-right: 1px solid white;
+        }
+
+        .options div:hover {
+            background-color: white;
+        }
+
+        .options .selected {
+            background-color: #bfc406;
+        }
+        
+        .selected:hover {
+            background-color: #bfc406;
+        }
+    }
+
+    .open {
+        
+        max-height: 250px;
+        border: 1px solid white;
+        border-top: none;
+    }
+
+    .activities {
+        max-height: 125px;
+        overflow: scroll;
+
+        ul {
+            margin: 0.25em 0 0;
+        }
+    }
+
+}
